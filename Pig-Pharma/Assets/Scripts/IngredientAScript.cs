@@ -8,13 +8,13 @@ public class IngredientAScript : MonoBehaviour
 
     public Texture renderTextureItem;
     public RawImage ImageItem;
-    public bool IngredientABool;
+    public string ingredientName = "";
 
 
     void OnMouseDown()
     {
         ImageItem.texture = renderTextureItem;
-        IngredientABool = true;
+        ingredientName = gameObject.name;
 
     }
 
