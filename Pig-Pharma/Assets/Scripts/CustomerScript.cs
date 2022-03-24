@@ -21,7 +21,7 @@ public class CustomerScript : MonoBehaviour
     {
         if(!orderTaken)
         {
-            rand = Random.Range(0, 3);
+            rand = Random.Range(0, 4);
             if (rand == 0)
             {
                 request.text = "I want a... \ngreen pill";
@@ -36,6 +36,11 @@ public class CustomerScript : MonoBehaviour
             {
                 request.text = "I want a... \norange pill";
                 requestedDrug = "DrugAC";
+            }
+            else if (rand == 3)
+            {
+                request.text = "I want... \ngreen strained \nmash";
+                requestedDrug = "Strained Mash D";
             }
             else
             {

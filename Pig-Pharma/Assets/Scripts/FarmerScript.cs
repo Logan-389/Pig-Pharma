@@ -13,7 +13,7 @@ public class FarmerScript : MonoBehaviour
 
 
     public GameObject Farmer;
-    public float timeRemaining = 5;
+    public float timeRemaining = 60;
     private int farmerStateIndex = 0;
 
 

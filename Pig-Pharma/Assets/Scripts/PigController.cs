@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,9 +21,12 @@ public class PigController : MonoBehaviour
     public Texture renderTextureItemIngA;
     public Texture renderTextureItemIngB;
     public Texture renderTextureItemIngC;
+    public Texture renderTextureItemIngD;
+    public Texture renderTextureItemIngF;
     public Texture renderTextureItemMixAB;
     public Texture renderTextureItemMixAC;
     public Texture renderTextureItemMixBC;
+    public Texture renderTextureItemStrainedD;
     public Texture renderTextureItemMixFail;
 
     /* Icons of Finished Drugs */
@@ -42,6 +46,22 @@ public class PigController : MonoBehaviour
     public RawImage CauldronImageItem1;
     public RawImage CauldronImageItem2;
     string[] inCauldron = new string[2];
+
+    /* Funnel UI */
+    int funnelIndex = 0;
+    public RawImage FunnelImageItem1;
+    string[] inFunnel = new string[1];
+    
+    public float funnelTimer = 0;
+    private string displayFunnelString;
+    public Text displayFunnelTimer;
+    float fSeconds;
+    float fMinutes;
+
+    /* Lamp UI */
+    int lampIndex = 0;
+    public RawImage LampImageItem1;
+    string[] inLamp = new string[1];
 
     /* Pig Display */
     public Texture PigNormImg;
@@ -76,8 +96,10 @@ public class PigController : MonoBehaviour
                 actingLikeAPig = false;
             }
 
+
             /* use the mixer */
-            if ((heldIngredient == "IngredientA" || heldIngredient == "IngredientB" || heldIngredient == "IngredientC") && objectName == "Mixer" && mixIndex == 0)
+            //(heldIngredient == "IngredientA" || heldIngredient == "IngredientB" || heldIngredient == "IngredientC" || heldIngredient == "IngredientD" || heldIngredient == "IngredientF")
+            if (heldIngredient != "none" && objectName == "Mixer" && mixIndex == 0)
             {
                 inMixer[0] = heldIngredient;
                 if (heldIngredient == "IngredientA")
@@ -91,6 +113,14 @@ public class PigController : MonoBehaviour
                 else if (heldIngredient == "IngredientC")
                 {
                     MixerImageItem1.texture = renderTextureItemIngC;
+                } 
+                else if (heldIngredient == "IngredientD")
+                {
+                    MixerImageItem1.texture = renderTextureItemIngD;
+                } 
+                else if (heldIngredient == "IngredientF")
+                {
+                    MixerImageItem1.texture = renderTextureItemIngF;
                 }
                 mixIndex++;
                 heldIngredient = "none";
@@ -111,6 +141,14 @@ public class PigController : MonoBehaviour
                 else if (heldIngredient == "IngredientC")
                 {
                     MixerImageItem2.texture = renderTextureItemIngC;
+                }
+                else if (heldIngredient == "IngredientD")
+                {
+                    MixerImageItem2.texture = renderTextureItemIngD;
+                }
+                else if (heldIngredient == "IngredientF")
+                {
+                    MixerImageItem2.texture = renderTextureItemIngF;
                 }
                 mixIndex++;
                 heldIngredient = "none";
@@ -244,9 +282,59 @@ public class PigController : MonoBehaviour
                 cauldIndex = 0; // Cauldron Reset
             }
 
+            /* use the funnel */
+            if (heldIngredient == "IngredientD" && objectName == "Funnel" && funnelIndex == 0)
+            {
+                inFunnel[0] = heldIngredient;
+                if (heldIngredient == "IngredientD")
+                {
+                    FunnelImageItem1.texture = renderTextureItemIngD;
+                }
+                funnelIndex++;
+                ImageItem.texture = renderTextureBlank;
+                heldIngredient = "";
+                objectName = "";
+            } else if (objectName == "Funnel" && funnelIndex == 1)
+            {
+                if(inFunnel[0] == "IngredientD")
+                {
+                    funnelTimer = 15;
+                    funnelIndex = 2;
+                }
+            } else if(objectName == "Funnel" & funnelIndex == -1)
+            {
+                if(inFunnel[0] == "IngredientD")
+                {
+                    FunnelImageItem1.texture = renderTextureBlank;
+                    ImageItem.texture = renderTextureItemStrainedD;
+                    heldIngredient = "Strained Mash D";
+                }
+                objectName = "";
+                inFunnel[0] = "";
+                funnelIndex = 0;
+            }
 
-            /* the igredient that was just grabbed */
-            if (objectName == "IngredientA" || objectName == "IngredientB" || objectName == "IngredientC")
+            /* use the light */
+            /*
+            if (heldIngredient == "IngredientF" && objectName == "Lamp" && lampIndex == 0)
+            {
+                inLamp[0] = heldIngredient;
+                if (heldIngredient == "IngredientF")
+                {
+                    LampImageItem1.texture = renderTextureItemIngF;
+                }
+                lampIndex++;
+                ImageItem.texture = renderTextureBlank;
+                heldIngredient = "";
+                objectName = "";
+             } else if (objectName == "Lamp" && lampIndex == 1)
+             {
+           
+             }
+            */
+
+        /* the igredient that was just grabbed */
+        if (objectName == "IngredientA" || objectName == "IngredientB" || objectName == "IngredientC" || objectName == "IngredientD" || objectName == "IngredientF")
             {
                 heldIngredient = objectName;
 
@@ -261,5 +349,25 @@ public class PigController : MonoBehaviour
                 ImageItem.texture = renderTextureBlank;
             }
         }
+
+        /* Decriment Timers */
+        //Funnel Timer
+        if (funnelTimer > 0)
+        {
+            funnelTimer -= Time.deltaTime;
+            fSeconds = Mathf.FloorToInt(funnelTimer % 60);
+            fMinutes = 0;
+            displayFunnelTimer.text = string.Format("{0:00}:{1:00}", fMinutes, fSeconds);
+            funnelIndex = 2;
+        } else if (funnelTimer <= 0 && funnelIndex == 2)
+        {
+            funnelTimer = 0;
+            fSeconds = 0;
+            fMinutes = 0;
+            displayFunnelTimer.text = string.Format("{0:00}:{1:00}", fMinutes, fSeconds);
+            Debug.Log("Done cooking");
+            funnelIndex = -1; // Get ready to pick items up!
+        }
+
     }
 }
