@@ -60,7 +60,7 @@ public class FarmerScript : MonoBehaviour
             farmerStateIndex++;
         } else if (timeRemaining <= 0 && farmerStateIndex == 1) //Out of time 1
         {
-            timeRemaining = 3;  
+            timeRemaining = 2;  
             farmerStateIndex++;
         }
         else if (timeRemaining <= 0 && farmerStateIndex == 2) //Out of time 2
