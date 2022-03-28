@@ -25,6 +25,9 @@ public class CustomerScript : MonoBehaviour
     int customerSatIndex = 0;
     bool timeOut = false;
 
+    /* Audio */
+    public AudioSource bellSound;
+
     void OnMouseDown()
     {
         if(!orderTaken)
@@ -64,6 +67,7 @@ public class CustomerScript : MonoBehaviour
 
             if(drugGiven == requestedDrug)
             {
+                bellSound.Play();
                 scoreScript = GameObject.FindGameObjectWithTag("Score").GetComponent<UpdateScoreScript>();
                 scoreScript.updateScore(drugGiven);
                 startOver();

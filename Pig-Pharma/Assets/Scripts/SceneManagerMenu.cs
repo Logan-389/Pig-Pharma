@@ -9,6 +9,7 @@ public class SceneManagerMenu : MonoBehaviour
     string objectName = "";
     Ray ray;
     RaycastHit hit;
+    public GameObject CreditsQuad;
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +28,16 @@ public class SceneManagerMenu : MonoBehaviour
             if (objectName == "StartButton")
             {
                 SceneManager.LoadScene("SampleScene");
+            } 
+            else if (objectName == "CreditsButton")
+            {
+                CreditsQuad.SetActive(true);
             }
-
-            if (Input.GetKeyDown("escape"))
+            else if (objectName == "CloseCreditsButton")
+            {
+                CreditsQuad.SetActive(false);
+            }
+            else if(objectName == "QuitButton")
             {
                 Application.Quit();
             }

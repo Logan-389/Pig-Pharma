@@ -73,7 +73,7 @@ public class PigController : MonoBehaviour
     public Texture PigFarmImg;
     public GameObject Pig;
     Renderer pigRenderer;
-    public bool actingLikeAPig = false; /* if you are acting like a pig, the farmer will leave you alone */
+    bool actingLikeAPig = false; /* if you are acting like a pig, the farmer will leave you alone */
 
     // Start is called before the first frame update
     void Start()
@@ -95,7 +95,7 @@ public class PigController : MonoBehaviour
             {
                 pigRenderer.material.SetTexture("_MainTex", PigFarmImg);
                 actingLikeAPig = true;
-            } else if(objectName == "Pig" && actingLikeAPig)
+            } else if(actingLikeAPig)
             {
                 pigRenderer.material.SetTexture("_MainTex", PigNormImg);
                 actingLikeAPig = false;

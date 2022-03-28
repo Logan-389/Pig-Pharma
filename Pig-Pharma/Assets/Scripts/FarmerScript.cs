@@ -21,7 +21,10 @@ public class FarmerScript : MonoBehaviour
     Renderer farmerRenderer;
     public Texture FarmerNormImg;
     public Texture FarmerAngryImg;
-    
+
+    /* Audio */
+    public AudioSource angerSound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -60,8 +63,9 @@ public class FarmerScript : MonoBehaviour
             farmerStateIndex++;
         } else if (timeRemaining <= 0 && farmerStateIndex == 1) //Out of time 1
         {
-            timeRemaining = 2;  
+            timeRemaining = 1.5f;  
             farmerStateIndex++;
+            angerSound.Play();
         }
         else if (timeRemaining <= 0 && farmerStateIndex == 2) //Out of time 2
         {
