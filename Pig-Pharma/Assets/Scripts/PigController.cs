@@ -17,17 +17,22 @@ public class PigController : MonoBehaviour
     public Texture renderTextureBlank;
     public RawImage ImageItem;
 
-    /* Icons of Ingredients */
+    /* Icons of Raw Ingredients */
     public Texture renderTextureItemIngA;
     public Texture renderTextureItemIngB;
     public Texture renderTextureItemIngC;
     public Texture renderTextureItemIngD;
     public Texture renderTextureItemIngF;
+    public Texture renderTextureItemMixFail;
+
+    /* Mixed Intredients */
     public Texture renderTextureItemMixAB;
     public Texture renderTextureItemMixAC;
     public Texture renderTextureItemMixBC;
+
+    /* Funnel Intredients */
     public Texture renderTextureItemStrainedD;
-    public Texture renderTextureItemMixFail;
+    public Texture renderTextureSyrupF;
 
     /* Icons of Finished Drugs */
     public Texture renderTextureDrugAB;
@@ -215,8 +220,20 @@ public class PigController : MonoBehaviour
 
             }
 
-            /* Use the cauldron */
+            /* Clear Mixer Buton Pressed */
+            if(objectName == "Mixer_Clear")
+            {
+                Debug.Log("So, you want to clear the mixer!?");
+                MixerImageItem1.texture = renderTextureBlank;
+                MixerImageItem2.texture = renderTextureBlank;
+                inMixer[0] = "";
+                inMixer[1] = "";
+                mixIndex = 0;
+                objectName = "";
+            }
 
+
+            /* Use the cauldron */
             if ((heldIngredient == "IngredinetMixAB" || heldIngredient == "IngredinetMixBC" || heldIngredient == "IngredinetMixAC") && objectName == "Cauldron" && cauldIndex == 0)
             {
                 inCauldron[0] = heldIngredient;
@@ -282,13 +299,28 @@ public class PigController : MonoBehaviour
                 cauldIndex = 0; // Cauldron Reset
             }
 
+            /* Clear Cauldron Buton Pressed */
+            if (objectName == "Cauldron_Clear")
+            {
+                Debug.Log("So, you want to clear the cauldron!?");
+                CauldronImageItem1.texture = renderTextureBlank;
+                CauldronImageItem2.texture = renderTextureBlank;
+                inCauldron[0] = "";
+                inCauldron[1] = "";
+                cauldIndex = 0;
+                objectName = "";
+            }
+
             /* use the funnel */
-            if (heldIngredient == "IngredientD" && objectName == "Funnel" && funnelIndex == 0)
+            if ((heldIngredient == "IngredientD" || heldIngredient == "IngredientF") && objectName == "Funnel" && funnelIndex == 0)
             {
                 inFunnel[0] = heldIngredient;
                 if (heldIngredient == "IngredientD")
                 {
                     FunnelImageItem1.texture = renderTextureItemIngD;
+                } else if(heldIngredient == "IngredientF")
+                {
+                    FunnelImageItem1.texture = renderTextureItemIngF;
                 }
                 funnelIndex++;
                 ImageItem.texture = renderTextureBlank;
@@ -300,6 +332,10 @@ public class PigController : MonoBehaviour
                 {
                     funnelTimer = 15;
                     funnelIndex = 2;
+                } else if(inFunnel[0] == "IngredientF")
+                {
+                    funnelTimer = 16;
+                    funnelIndex = 2;
                 }
             } else if(objectName == "Funnel" & funnelIndex == -1)
             {
@@ -308,11 +344,27 @@ public class PigController : MonoBehaviour
                     FunnelImageItem1.texture = renderTextureBlank;
                     ImageItem.texture = renderTextureItemStrainedD;
                     heldIngredient = "Strained Mash D";
+                } else if(inFunnel[0] == "IngredientF")
+                {
+                    FunnelImageItem1.texture = renderTextureBlank;
+                    ImageItem.texture = renderTextureSyrupF;
+                    heldIngredient = "Syrup F";
                 }
                 objectName = "";
                 inFunnel[0] = "";
                 funnelIndex = 0;
             }
+
+            /* Clear Funnel Buton Pressed */
+            if (objectName == "Funnel_Clear")
+            {
+                Debug.Log("So, you want to clear the funnel!?");
+                FunnelImageItem1.texture = renderTextureBlank;
+                inFunnel[0] = "";
+                funnelIndex = 0;
+                objectName = "";
+            }
+
 
             /* use the light */
             /*
@@ -333,8 +385,8 @@ public class PigController : MonoBehaviour
              }
             */
 
-        /* the igredient that was just grabbed */
-        if (objectName == "IngredientA" || objectName == "IngredientB" || objectName == "IngredientC" || objectName == "IngredientD" || objectName == "IngredientF")
+            /* the igredient that was just grabbed */
+            if (objectName == "IngredientA" || objectName == "IngredientB" || objectName == "IngredientC" || objectName == "IngredientD" || objectName == "IngredientF")
             {
                 heldIngredient = objectName;
 
