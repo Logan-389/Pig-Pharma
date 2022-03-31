@@ -60,7 +60,7 @@ public class CustomerScript : MonoBehaviour
             }
             else if (rand == 4)
             {
-                requestA.SetText("I want a...\nPink Syrup F \nmash");
+                requestA.SetText("I want a...\nPink Syrup F");
                 requestedDrug = "Pink Syrup F";
             }
             else
