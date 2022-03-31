@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/BusinessFail.unity
-    guid: 8a698c78da093c24091631fdaeeb74fd
+    path: Assets/Scenes/Menu.unity
+    guid: f1f44743da0d705459b3f76268de9bc1
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: f1f44743da0d705459b3f76268de9bc1
+    path: Assets/Scenes/BusinessFail.unity
+    guid: 8a698c78da093c24091631fdaeeb74fd
   m_configObjects: {}

@@ -359,11 +359,16 @@ public class PigController : MonoBehaviour
                 inFunnel[0] = "";
                 funnelIndex = 0;
                 objectName = "";
+                /* Rest the timer */
+                funnelTimer = 0;
+                fSeconds = Mathf.FloorToInt(funnelTimer % 60);
+                fMinutes = 0;
+                displayFunnelTimer.text = string.Format("{0:00}:{1:00}", fMinutes, fSeconds);
             }
 
 
             /* the igredient that was just grabbed */
-            if (objectName == "IngredientA" || objectName == "IngredientB" || objectName == "IngredientC" || objectName == "IngredientD" || objectName == "IngredientF")
+                if (objectName == "IngredientA" || objectName == "IngredientB" || objectName == "IngredientC" || objectName == "IngredientD" || objectName == "IngredientF")
             {
                 heldIngredient = objectName;
             }
