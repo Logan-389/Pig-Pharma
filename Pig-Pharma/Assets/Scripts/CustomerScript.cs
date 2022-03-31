@@ -101,7 +101,7 @@ public class CustomerScript : MonoBehaviour
 
             transform.position = new Vector3(8.8f, 1f, -72f);    //LEAVE THE PHARMA
             atPharma = false;
-            timeTilAtPharma = Random.Range(3, 15);          //Wait to enter the pharma
+            timeTilAtPharma = Random.Range(3, 25);          //Wait to enter the pharma
             orderTaken = false;
             customerSatIndex = 0;
             customerSatisfaction = 20;
@@ -129,7 +129,7 @@ public class CustomerScript : MonoBehaviour
     {
         customerRenderer = Customer.GetComponent<Renderer>();
         transform.position = new Vector3(8.8f, 1f, -72f);
-        timeTilAtPharma = Random.Range(3, 15);
+        timeTilAtPharma = Random.Range(3, 25);
     }
 
     // Update is called once per frame
