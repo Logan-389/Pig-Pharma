@@ -24,6 +24,11 @@ public class FarmerScript : MonoBehaviour
 
     /* Audio */
     public AudioSource angerSound;
+    public AudioSource farmerLaughSound;
+    public AudioSource cashStealSound;
+
+    /* Update the cash */
+    UpdateScoreScript scoreScript;
 
 
     // Start is called before the first frame update
@@ -40,14 +45,13 @@ public class FarmerScript : MonoBehaviour
         if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
         {
             objectName = hit.collider.name;
-            if (objectName == "Pig" && !pigIsBeingAPig)
+            if (objectName == "Pig")
             {
                 Debug.Log("You have selected THE PIG");
                 pigIsBeingAPig = true;
             }
-            else if (objectName == "Pig" && pigIsBeingAPig)
+            else if (objectName != "Pig")
             {
-                Debug.Log("You have selected THE PIG WORK MODE");
                 pigIsBeingAPig = false;
             }
         }
@@ -75,7 +79,10 @@ public class FarmerScript : MonoBehaviour
             if(!pigIsBeingAPig)
             {
                 Debug.Log("You're not acting like a pig right now!!!");
-                SceneManager.LoadScene("BusinessFail"); /* your pig drugs days are over */
+                scoreScript = GameObject.FindGameObjectWithTag("Score").GetComponent<UpdateScoreScript>();
+                scoreScript.farmerStealsCash();
+                cashStealSound.Play();
+                farmerLaughSound.Play();
             }
 
         }

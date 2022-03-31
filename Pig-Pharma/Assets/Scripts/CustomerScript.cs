@@ -32,7 +32,7 @@ public class CustomerScript : MonoBehaviour
     {
         if(!orderTaken)
         {
-            rand = Random.Range(0, 4);
+            rand = Random.Range(0, 5);
             if (rand == 0)
             {
                 requestA.SetText("I want a... \ngreen pill");
@@ -52,6 +52,11 @@ public class CustomerScript : MonoBehaviour
             {
                 requestA.SetText("I want a...\ngreen strained \nmash");
                 requestedDrug = "Strained Mash D";
+            }
+            else if (rand == 4)
+            {
+                requestA.SetText("I want a...\nPink Syrup F \nmash");
+                requestedDrug = "Pink Syrup F";
             }
             else
             {

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class IngredientAScript : MonoBehaviour
 {
+    /* Update the score and cash */
+    UpdateScoreScript scoreScript;
 
     public Texture renderTextureItem;
     public RawImage ImageItem;
@@ -15,8 +17,9 @@ public class IngredientAScript : MonoBehaviour
 
             ImageItem.texture = renderTextureItem;
             ingredientName = gameObject.name;
-    
-       
+            scoreScript = GameObject.FindGameObjectWithTag("Score").GetComponent<UpdateScoreScript>();
+            scoreScript.loseCash(ingredientName);
+
     }
 
 }

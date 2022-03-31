@@ -10,7 +10,7 @@ public class BookScript : MonoBehaviour
     public GameObject BookPages;
     private bool bookIsOpen = false;
     int pageIndex;
-    int totalPages = 1;
+    int totalPages = 4;
 
     string objectName = "";
     Ray ray;
@@ -20,6 +20,9 @@ public class BookScript : MonoBehaviour
     Renderer bookRenderer;
     public Texture BookPage1;
     public Texture BookPage2;
+    public Texture BookPage3;
+    public Texture BookPage4;
+    public Texture BookPage5;
 
     // Start is called before the first frame update
     void Start()
@@ -59,9 +62,22 @@ public class BookScript : MonoBehaviour
             if(pageIndex == 0)
             {
                 bookRenderer.material.SetTexture("_MainTex",BookPage1);
-            } else if(pageIndex == 1)
+            } 
+            else if(pageIndex == 1)
             {
                 bookRenderer.material.SetTexture("_MainTex", BookPage2);
+            }
+            else if (pageIndex == 2)
+            {
+                bookRenderer.material.SetTexture("_MainTex", BookPage3);
+            }
+            else if (pageIndex == 3)
+            {
+                bookRenderer.material.SetTexture("_MainTex", BookPage4);
+            }
+            else if (pageIndex == 4)
+            {
+                bookRenderer.material.SetTexture("_MainTex", BookPage5);
             }
         }
     }

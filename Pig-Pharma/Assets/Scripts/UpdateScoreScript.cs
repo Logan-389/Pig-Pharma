@@ -38,6 +38,20 @@ public class UpdateScoreScript : MonoBehaviour
 
     }
 
+    public void loseCash(string ingredientGrabbed)
+    {
+        
+        cash -= 100;
+        displayCash.text = cash.ToString();
+    }
+
+    public void farmerStealsCash()
+    {
+
+        cash -= 250;
+        displayCash.text = cash.ToString();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +61,10 @@ public class UpdateScoreScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+      if(cash < -500)
+        {
+            Debug.Log("LOSE CASH");
+            SceneManager.LoadScene("BusinessFail");
+        }
     }
 }

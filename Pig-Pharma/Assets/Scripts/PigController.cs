@@ -63,10 +63,7 @@ public class PigController : MonoBehaviour
     float fSeconds;
     float fMinutes;
 
-    /* Lamp UI */
-    int lampIndex = 0;
-    public RawImage LampImageItem1;
-    string[] inLamp = new string[1];
+    public AudioSource funnelTimerSound;
 
     /* Pig Display */
     public Texture PigNormImg;
@@ -89,7 +86,6 @@ public class PigController : MonoBehaviour
         if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
         {
             objectName = hit.collider.name;
-            //print(objectName);
 
             if(objectName == "Pig" && !actingLikeAPig)
             {
@@ -103,8 +99,8 @@ public class PigController : MonoBehaviour
 
 
             /* use the mixer */
-            //(heldIngredient == "IngredientA" || heldIngredient == "IngredientB" || heldIngredient == "IngredientC" || heldIngredient == "IngredientD" || heldIngredient == "IngredientF")
-            if (heldIngredient != "none" && objectName == "Mixer" && mixIndex == 0)
+            //heldIngredient  == "IngredientA" || heldIngredient  == "IngredientB" || heldIngredient  == "IngredientC" || heldIngredient  == "IngredientD" || heldIngredient  == "IngredientF"
+            if ((heldIngredient == "IngredientA" || heldIngredient == "IngredientB" || heldIngredient == "IngredientC" || heldIngredient == "IngredientD" || heldIngredient == "IngredientF") && objectName == "Mixer" && mixIndex == 0)
             {
                 inMixer[0] = heldIngredient;
                 if (heldIngredient == "IngredientA")
@@ -132,7 +128,7 @@ public class PigController : MonoBehaviour
                 objectName = "";
                 ImageItem.texture = renderTextureBlank;
             }
-            else if (heldIngredient != "none" && objectName == "Mixer" && mixIndex == 1)
+            else if ((heldIngredient == "IngredientA" || heldIngredient == "IngredientB" || heldIngredient == "IngredientC" || heldIngredient == "IngredientD" || heldIngredient == "IngredientF") && objectName == "Mixer" && mixIndex == 1)
             {
                 inMixer[1] = heldIngredient;
                 if (heldIngredient == "IngredientA")
@@ -348,7 +344,7 @@ public class PigController : MonoBehaviour
                 {
                     FunnelImageItem1.texture = renderTextureBlank;
                     ImageItem.texture = renderTextureSyrupF;
-                    heldIngredient = "Syrup F";
+                    heldIngredient = "Pink Syrup F";
                 }
                 objectName = "";
                 inFunnel[0] = "";
@@ -366,35 +362,14 @@ public class PigController : MonoBehaviour
             }
 
 
-            /* use the light */
-            /*
-            if (heldIngredient == "IngredientF" && objectName == "Lamp" && lampIndex == 0)
-            {
-                inLamp[0] = heldIngredient;
-                if (heldIngredient == "IngredientF")
-                {
-                    LampImageItem1.texture = renderTextureItemIngF;
-                }
-                lampIndex++;
-                ImageItem.texture = renderTextureBlank;
-                heldIngredient = "";
-                objectName = "";
-             } else if (objectName == "Lamp" && lampIndex == 1)
-             {
-           
-             }
-            */
-
             /* the igredient that was just grabbed */
             if (objectName == "IngredientA" || objectName == "IngredientB" || objectName == "IngredientC" || objectName == "IngredientD" || objectName == "IngredientF")
             {
                 heldIngredient = objectName;
-
-                print(heldIngredient);
             }
 
             /* if the customer is clicked on */
-            if (objectName == "CustomerA")
+            if (objectName == "CustomerA" || objectName == "CustomerB")
             {
                 heldIngredient = "";
                 objectName = "";
@@ -417,6 +392,7 @@ public class PigController : MonoBehaviour
             fSeconds = 0;
             fMinutes = 0;
             displayFunnelTimer.text = string.Format("{0:00}:{1:00}", fMinutes, fSeconds);
+            funnelTimerSound.Play();
             Debug.Log("Done cooking");
             funnelIndex = -1; // Get ready to pick items up!
         }
