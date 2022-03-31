@@ -12,6 +12,10 @@ public class CustomerScript : MonoBehaviour
     string requestedDrug;
     string drugGiven;
 
+    /* Enter pharma... */
+    bool atPharma = false;
+    float timeTilAtPharma = 10;
+
     /* Update the score and cash */
     UpdateScoreScript scoreScript;
 
@@ -26,6 +30,7 @@ public class CustomerScript : MonoBehaviour
     bool timeOut = false;
 
     /* Audio */
+    public AudioSource enterSound;
     public AudioSource bellSound;
 
     void OnMouseDown()
@@ -76,7 +81,12 @@ public class CustomerScript : MonoBehaviour
                 scoreScript = GameObject.FindGameObjectWithTag("Score").GetComponent<UpdateScoreScript>();
                 scoreScript.updateScore(drugGiven);
                 startOver();
-            } else
+            } 
+            else if(drugGiven.Length <= 0)
+            {
+                print("Woops");
+            }
+            else
             {
                 scoreScript = GameObject.FindGameObjectWithTag("Score").GetComponent<UpdateScoreScript>();
                 scoreScript.updateLives();
@@ -88,6 +98,10 @@ public class CustomerScript : MonoBehaviour
 
         public void startOver()
           {
+
+            transform.position = new Vector3(8.8f, 1f, -72f);    //LEAVE THE PHARMA
+            atPharma = false;
+            timeTilAtPharma = Random.Range(3, 15);          //Wait to enter the pharma
             orderTaken = false;
             customerSatIndex = 0;
             customerSatisfaction = 20;
@@ -114,43 +128,67 @@ public class CustomerScript : MonoBehaviour
     void Start()
     {
         customerRenderer = Customer.GetComponent<Renderer>();
+        transform.position = new Vector3(8.8f, 1f, -72f);
+        timeTilAtPharma = Random.Range(3, 15);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!atPharma)
+        {
+            //get ready to GO to pharma
+            if (timeTilAtPharma > 0)
+            {
+                timeTilAtPharma -= Time.deltaTime; 
+            } else                                                  // NOW GO TO THE PHARMA!
+            {
+                float xPos = Random.Range(-16, 15);
+                float zPos = Random.Range(-32, -19);
+                transform.position = new Vector3(xPos, 1f, zPos);
+                atPharma = true;
+                enterSound.Play();
+            }
 
-        if (customerSatIndex == 0 && customerSatisfaction > 0)
+        } else
         {
-            customerSatisfaction -= Time.deltaTime;
+            if (customerSatIndex == 0 && customerSatisfaction > 0)
+            {
+                customerSatisfaction -= Time.deltaTime;
+            }
+            else if (customerSatIndex == 0 && customerSatisfaction <= 0)
+            {
+                customerSatIndex++;
+                customerSatisfaction = 10;
+                customerRenderer.material.SetTexture("_MainTex", CustomerNeutralImg);
+            }
+            else if (customerSatIndex == 1 && customerSatisfaction > 0)
+            {
+                customerSatisfaction -= Time.deltaTime;
+            }
+            else if (customerSatIndex == 1 && customerSatisfaction <= 0)
+            {
+                customerSatIndex++;
+                if(requestedDrug == "Strained Mash D" || requestedDrug == "Pink Syrup F")
+                {
+                    customerSatisfaction = 20;
+                } else
+                {
+                    customerSatisfaction = 10;
+                }    
+                customerRenderer.material.SetTexture("_MainTex", CustomerMadImg);
+            }
+            else if (customerSatIndex == 2 && customerSatisfaction > 0)
+            {
+                customerSatisfaction -= Time.deltaTime;
+            }
+            else if (customerSatIndex == 2 && customerSatisfaction <= 0) // OUT OF TIME
+            {
+                customerSatIndex = 0;
+                customerSatisfaction = 20;
+                timeOut = true;
+                timeOutMethod(timeOut);
+            }
         }
-        else if (customerSatIndex == 0 && customerSatisfaction <= 0)
-        {
-            customerSatIndex++;
-            customerSatisfaction = 10;
-            customerRenderer.material.SetTexture("_MainTex", CustomerNeutralImg);
-        }
-        else if (customerSatIndex == 1 && customerSatisfaction > 0)
-        {
-            customerSatisfaction -= Time.deltaTime;
-        }
-        else if (customerSatIndex == 1 && customerSatisfaction <= 0)
-        {
-            customerSatIndex++;
-            customerSatisfaction = 10;
-            customerRenderer.material.SetTexture("_MainTex", CustomerMadImg);
-        } else if (customerSatIndex == 2 && customerSatisfaction > 0)
-        {
-            customerSatisfaction -= Time.deltaTime;
-        } else if (customerSatIndex == 2 && customerSatisfaction <= 0) // OUT OF TIME
-        {
-            customerSatIndex = 0;
-            customerSatisfaction = 20;
-            timeOut = true;
-            timeOutMethod(timeOut);
-        }
-
-
-
     }
 }

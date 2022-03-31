@@ -27,6 +27,10 @@ public class SceneManagerBusinessFail : MonoBehaviour
             if(objectName == "FailButton")
             {
                 SceneManager.LoadScene("SampleScene");
+            } 
+            else if (objectName == "MenuButton")
+            {
+                SceneManager.LoadScene("Menu");
             }
 
         }
