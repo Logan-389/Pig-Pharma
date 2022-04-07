@@ -64,6 +64,7 @@ public class PigController : MonoBehaviour
     float fMinutes;
 
     public AudioSource funnelTimerSound;
+    public AudioSource trashSound;
 
     /* Pig Display */
     public Texture PigNormImg;
@@ -220,6 +221,7 @@ public class PigController : MonoBehaviour
             if(objectName == "Mixer_Clear")
             {
                 Debug.Log("So, you want to clear the mixer!?");
+                trashSound.Play();
                 MixerImageItem1.texture = renderTextureBlank;
                 MixerImageItem2.texture = renderTextureBlank;
                 inMixer[0] = "";
@@ -299,6 +301,7 @@ public class PigController : MonoBehaviour
             if (objectName == "Cauldron_Clear")
             {
                 Debug.Log("So, you want to clear the cauldron!?");
+                trashSound.Play();
                 CauldronImageItem1.texture = renderTextureBlank;
                 CauldronImageItem2.texture = renderTextureBlank;
                 inCauldron[0] = "";
@@ -355,6 +358,7 @@ public class PigController : MonoBehaviour
             if (objectName == "Funnel_Clear")
             {
                 Debug.Log("So, you want to clear the funnel!?");
+                trashSound.Play();
                 FunnelImageItem1.texture = renderTextureBlank;
                 inFunnel[0] = "";
                 funnelIndex = 0;

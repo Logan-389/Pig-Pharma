@@ -29,6 +29,33 @@ public class CustomerScript : MonoBehaviour
     int customerSatIndex = 0;
     bool timeOut = false;
 
+    /* Customer Textures */
+    int indexOfAnimalType;          // 0 = horse, 1 = cow,
+    public Texture horseText1;
+    public Texture horseText2;
+    public Texture horseText3;
+    public Texture cowText1;
+    public Texture cowText2;
+    public Texture cowText3;
+    public Texture catText1;
+    public Texture catText2;
+    public Texture catText3;
+    public Texture chickenText1;
+    public Texture chickenText2;
+    public Texture chickenText3;
+    public Texture dogText1;
+    public Texture dogText2;
+    public Texture dogText3;
+    public Texture duckText1;
+    public Texture duckText2;
+    public Texture duckText3;
+    public Texture goatText1;
+    public Texture goatText2;
+    public Texture goatText3;
+    public Texture sheepText1;
+    public Texture sheepText2;
+    public Texture sheepText3;
+
     /* Audio */
     public AudioSource enterSound;
     public AudioSource bellSound;
@@ -105,7 +132,7 @@ public class CustomerScript : MonoBehaviour
             orderTaken = false;
             customerSatIndex = 0;
             customerSatisfaction = 20;
-            customerRenderer.material.SetTexture("_MainTex", CustomerHappyImg); 
+            getOurAnimalType1();
             requestA.SetText("I want a...");
             }
 
@@ -123,6 +150,126 @@ public class CustomerScript : MonoBehaviour
              }
         }
        
+        private void getOurAnimalType1()
+          {
+             indexOfAnimalType = Random.Range(0, 8);             /*what kind of animal are we?*/
+            if (indexOfAnimalType == 0)
+            {
+                customerRenderer.material.SetTexture("_MainTex", horseText1);
+            }
+            else if (indexOfAnimalType == 1)
+            {
+                customerRenderer.material.SetTexture("_MainTex", cowText1);   
+            }
+            else if (indexOfAnimalType == 2)
+            {
+                customerRenderer.material.SetTexture("_MainTex", catText1);
+            }
+            else if (indexOfAnimalType == 3)
+            {
+                customerRenderer.material.SetTexture("_MainTex", chickenText1);
+            }
+            else if (indexOfAnimalType == 4)
+            {
+                customerRenderer.material.SetTexture("_MainTex", dogText1);
+            }
+            else if (indexOfAnimalType == 5)
+            {
+                customerRenderer.material.SetTexture("_MainTex", duckText1);
+            }
+            else if (indexOfAnimalType == 6)
+            {
+                customerRenderer.material.SetTexture("_MainTex", goatText1);
+            }
+            else if (indexOfAnimalType == 7)
+            {
+                customerRenderer.material.SetTexture("_MainTex", sheepText1);
+            }
+            else
+            {
+                customerRenderer.material.SetTexture("_MainTex", cowText1);
+            }
+           }
+
+        private void getOurAnimalType2()
+        {
+            if (indexOfAnimalType == 0)
+            {
+                customerRenderer.material.SetTexture("_MainTex", horseText2);
+            }
+            else if (indexOfAnimalType == 1)
+            {
+                customerRenderer.material.SetTexture("_MainTex", cowText2);
+            }
+            else if (indexOfAnimalType == 2)
+            {
+                customerRenderer.material.SetTexture("_MainTex", catText2);
+            }
+            else if (indexOfAnimalType == 3)
+            {
+                customerRenderer.material.SetTexture("_MainTex", chickenText2);
+            }
+            else if (indexOfAnimalType == 4)
+            {
+                customerRenderer.material.SetTexture("_MainTex", dogText2);
+            }
+            else if (indexOfAnimalType == 5)
+            {
+                customerRenderer.material.SetTexture("_MainTex", duckText2);
+            }
+            else if (indexOfAnimalType == 6)
+            {
+                customerRenderer.material.SetTexture("_MainTex", goatText2);
+            }
+            else if (indexOfAnimalType == 7)
+            {
+                customerRenderer.material.SetTexture("_MainTex", sheepText2);
+            }
+             else
+            {
+                customerRenderer.material.SetTexture("_MainTex", cowText2);
+            }
+        }
+
+        private void getOurAnimalType3()
+        {
+            if (indexOfAnimalType == 0)
+            {
+                customerRenderer.material.SetTexture("_MainTex", horseText3);
+            }
+            else if (indexOfAnimalType == 1)
+            {
+                customerRenderer.material.SetTexture("_MainTex", cowText3);
+            }
+            else if (indexOfAnimalType == 2)
+            {
+                customerRenderer.material.SetTexture("_MainTex", catText3);
+            }
+            else if (indexOfAnimalType == 3)
+            {
+                customerRenderer.material.SetTexture("_MainTex", chickenText3);
+            }
+            else if (indexOfAnimalType == 4)
+            {
+                customerRenderer.material.SetTexture("_MainTex", dogText3);
+            }
+            else if (indexOfAnimalType == 5)
+            {
+                customerRenderer.material.SetTexture("_MainTex", duckText3);
+            }
+            else if (indexOfAnimalType == 6)
+            {
+                customerRenderer.material.SetTexture("_MainTex", goatText3);
+            }
+            else if (indexOfAnimalType == 7)
+            {
+                customerRenderer.material.SetTexture("_MainTex", sheepText3);
+            }
+            else
+            {
+                customerRenderer.material.SetTexture("_MainTex", cowText3);
+            }
+        }
 
     // Start is called before the first frame update
     void Start()
@@ -130,6 +277,8 @@ public class CustomerScript : MonoBehaviour
         customerRenderer = Customer.GetComponent<Renderer>();
         transform.position = new Vector3(8.8f, 1f, -72f);
         timeTilAtPharma = Random.Range(3, 25);
+        getOurAnimalType1();
+
     }
 
     // Update is called once per frame
@@ -160,7 +309,7 @@ public class CustomerScript : MonoBehaviour
             {
                 customerSatIndex++;
                 customerSatisfaction = 10;
-                customerRenderer.material.SetTexture("_MainTex", CustomerNeutralImg);
+                getOurAnimalType2();
             }
             else if (customerSatIndex == 1 && customerSatisfaction > 0)
             {
@@ -175,8 +324,8 @@ public class CustomerScript : MonoBehaviour
                 } else
                 {
                     customerSatisfaction = 10;
-                }    
-                customerRenderer.material.SetTexture("_MainTex", CustomerMadImg);
+                }
+                getOurAnimalType3();
             }
             else if (customerSatIndex == 2 && customerSatisfaction > 0)
             {
