@@ -60,6 +60,13 @@ public class CustomerScript : MonoBehaviour
     public AudioSource enterSound;
     public AudioSource bellSound;
 
+    /* Customer Wandering */
+    float timeUntilWandering = 3;
+    float xPos;
+    float zPos;
+    float newXPos;
+    float newZPos;
+
     void OnMouseDown()
     {
         if(!orderTaken)
@@ -292,8 +299,8 @@ public class CustomerScript : MonoBehaviour
                 timeTilAtPharma -= Time.deltaTime; 
             } else                                                  // NOW GO TO THE PHARMA!
             {
-                float xPos = Random.Range(-16, 15);
-                float zPos = Random.Range(-42, -36);
+                xPos = Random.Range(-23, 23);
+                zPos = Random.Range(-42, -36);
                 transform.position = new Vector3(xPos, 1f, zPos);
                 atPharma = true;
                 enterSound.Play();
@@ -337,6 +344,16 @@ public class CustomerScript : MonoBehaviour
                 customerSatisfaction = 20;
                 timeOut = true;
                 timeOutMethod(timeOut);
+            }
+
+            /* Wander around aimlessly WHILE at pharma*/
+            timeUntilWandering -= Time.deltaTime;
+            if (timeUntilWandering <= 0)
+            {
+                xPos = Random.Range(-23, 23);
+                zPos = Random.Range(-42, -36);
+                transform.position = new Vector3(xPos, 1f, zPos);
+                timeUntilWandering = Random.Range(7, 15);
             }
         }
     }

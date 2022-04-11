@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Customer
   - Score
+  - Difficulty
   layers:
   - Default
   - TransparentFX

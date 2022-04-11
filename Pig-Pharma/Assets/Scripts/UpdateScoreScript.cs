@@ -11,8 +11,15 @@ public class UpdateScoreScript : MonoBehaviour
     public int cash = 500;
     public Text displayCash;
 
-    public Text displayLives;
     int lives = 3;
+
+    public GameObject heartImg1;
+    public GameObject heartImg2;
+    public GameObject heartImg3;
+
+    /* Get difficulty setting */
+    GameDifficultyScript difficultyScript;
+    bool hardMode = false;
 
     public void updateScore(string drugGiven)
     {
@@ -23,19 +30,18 @@ public class UpdateScoreScript : MonoBehaviour
         if (lives == 2 || lives == 1)       /* You did good, here's some extra lives */
         {
             lives++;
-            displayLives.text = lives.ToString();
+            updateLivesImage();
         }
     }
 
     public void updateLives()
     {
         lives--;
-        displayLives.text = lives.ToString();
+        updateLivesImage();
         if (lives <= 0)
         {
             SceneManager.LoadScene("BusinessFail");
         }
-
     }
 
     public void loseCash(string ingredientGrabbed)
@@ -47,9 +53,37 @@ public class UpdateScoreScript : MonoBehaviour
 
     public void farmerStealsCash()
     {
-
-        cash -= 250;
+        difficultyScript = GameObject.FindGameObjectWithTag("Difficulty").GetComponent<GameDifficultyScript>();
+        hardMode = difficultyScript.returnDifficulty();
+        if(hardMode)
+        {
+            updateLives();
+        }
+        cash /= 2;
         displayCash.text = cash.ToString();
+    }
+
+    public void updateLivesImage()
+    {
+        if(lives == 3)
+        {
+            heartImg1.SetActive(true);
+            heartImg2.SetActive(true);
+            heartImg3.SetActive(true);
+        } else if(lives == 2)
+        {
+            heartImg1.SetActive(true);
+            heartImg2.SetActive(true);
+            heartImg3.SetActive(false);
+        } else if(lives == 1)
+        {
+            heartImg1.SetActive(true);
+            heartImg2.SetActive(false);
+            heartImg3.SetActive(false);
+        } else
+        {
+            Debug.Log("Setting the heart live images failed");
+        }
     }
 
     // Start is called before the first frame update
