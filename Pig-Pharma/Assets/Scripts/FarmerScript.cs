@@ -91,18 +91,18 @@ public class FarmerScript : MonoBehaviour
         if (farmerStateIndex == 0)
         {
             /* Chilling off screen */
-            transform.position = new Vector3(-70.5f, -0.4f, 32.4f);
+            transform.position = new Vector3(-70.5f, -0.4f, 39.9f);
             farmerRenderer.material.SetTexture("_MainTex", FarmerNormImg);
 
         } else if(farmerStateIndex == 1)
         {
             /* Hiding behind hay bales*/
-            transform.position = new Vector3(-12.5f, -0.4f, 32.4f);
+            transform.position = new Vector3(-12.5f, -0.4f, 39.9f);
         }
         else if(farmerStateIndex == 2)
         {
             /* Getting ready to grab pig */
-            transform.position = new Vector3(5.1f, -0.4f, 32.4f);
+            transform.position = new Vector3(5.1f, -0.4f, 39.9f);
             farmerRenderer.material.SetTexture("_MainTex", FarmerAngryImg);
         }
 

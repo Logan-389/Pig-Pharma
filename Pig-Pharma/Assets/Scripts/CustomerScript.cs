@@ -293,7 +293,7 @@ public class CustomerScript : MonoBehaviour
             } else                                                  // NOW GO TO THE PHARMA!
             {
                 float xPos = Random.Range(-16, 15);
-                float zPos = Random.Range(-32, -19);
+                float zPos = Random.Range(-42, -36);
                 transform.position = new Vector3(xPos, 1f, zPos);
                 atPharma = true;
                 enterSound.Play();

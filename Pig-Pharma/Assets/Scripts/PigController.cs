@@ -41,22 +41,34 @@ public class PigController : MonoBehaviour
     public Texture renderTextureDrugFail;
 
     /* Mixer UI*/
+    public GameObject Mixer;
     int mixIndex = 0;
     public RawImage MixerImageItem1;
     public RawImage MixerImageItem2;
     string[] inMixer = new string[2];
+    public Texture emptyMixer;
+    public Texture fullMixer;
+    Renderer mixerRenderer;
 
     /* Cauldron UI */
+    public GameObject Cauldron;
     int cauldIndex = 0;
     public RawImage CauldronImageItem1;
     public RawImage CauldronImageItem2;
     string[] inCauldron = new string[2];
+    public Texture emptyCauldron;
+    public Texture fullCauldron;
+    Renderer cauldronRenderer;
 
     /* Funnel UI */
+    public GameObject Funnel;
     int funnelIndex = 0;
     public RawImage FunnelImageItem1;
     string[] inFunnel = new string[1];
-    
+    public Texture emptyFunnel;
+    public Texture fullFunnel;
+    Renderer funnelRenderer;
+
     public float funnelTimer = 0;
     private string displayFunnelString;
     public Text displayFunnelTimer;
@@ -77,6 +89,13 @@ public class PigController : MonoBehaviour
     void Start()
     {
         pigRenderer = Pig.GetComponent<Renderer>();
+        mixerRenderer = Mixer.GetComponent<Renderer>();
+        cauldronRenderer = Cauldron.GetComponent<Renderer>();
+        funnelRenderer = Funnel.GetComponent<Renderer>();
+
+        mixerRenderer.material.SetTexture("_MainTex", emptyMixer);
+        cauldronRenderer.material.SetTexture("_MainTex", emptyCauldron);
+        funnelRenderer.material.SetTexture("_MainTex", emptyFunnel);
     }
 
     // Update is called once per frame
@@ -124,6 +143,7 @@ public class PigController : MonoBehaviour
                 {
                     MixerImageItem1.texture = renderTextureItemIngF;
                 }
+                mixerRenderer.material.SetTexture("_MainTex", fullMixer);
                 mixIndex++;
                 heldIngredient = "none";
                 objectName = "";
@@ -210,6 +230,8 @@ public class PigController : MonoBehaviour
                     heldIngredient = "IngredinetMixFail";
                     print("FAILED MIX");
                 }
+
+                mixerRenderer.material.SetTexture("_MainTex", emptyMixer);
                 inMixer[0] = "";
                 inMixer[1] = "";
                 mixIndex = 0; // The mixer items were picked up
@@ -224,6 +246,7 @@ public class PigController : MonoBehaviour
                 trashSound.Play();
                 MixerImageItem1.texture = renderTextureBlank;
                 MixerImageItem2.texture = renderTextureBlank;
+                mixerRenderer.material.SetTexture("_MainTex", emptyMixer);
                 inMixer[0] = "";
                 inMixer[1] = "";
                 mixIndex = 0;
@@ -248,6 +271,7 @@ public class PigController : MonoBehaviour
                     CauldronImageItem1.texture = renderTextureItemMixAC;
                 }
 
+                cauldronRenderer.material.SetTexture("_MainTex", fullCauldron);
                 cauldIndex++;
                 ImageItem.texture = renderTextureBlank;
                 heldIngredient = "";
@@ -292,6 +316,7 @@ public class PigController : MonoBehaviour
                     heldIngredient = "DrugAC";
                 }
 
+                cauldronRenderer.material.SetTexture("_MainTex", emptyCauldron);
                 inCauldron[0] = "";
                 objectName = "";
                 cauldIndex = 0; // Cauldron Reset
@@ -304,6 +329,7 @@ public class PigController : MonoBehaviour
                 trashSound.Play();
                 CauldronImageItem1.texture = renderTextureBlank;
                 CauldronImageItem2.texture = renderTextureBlank;
+                cauldronRenderer.material.SetTexture("_MainTex", emptyCauldron);
                 inCauldron[0] = "";
                 inCauldron[1] = "";
                 cauldIndex = 0;
@@ -323,6 +349,7 @@ public class PigController : MonoBehaviour
                 }
                 funnelIndex++;
                 ImageItem.texture = renderTextureBlank;
+                funnelRenderer.material.SetTexture("_MainTex", fullFunnel);
                 heldIngredient = "";
                 objectName = "";
             } else if (objectName == "Funnel" && funnelIndex == 1)
@@ -351,6 +378,7 @@ public class PigController : MonoBehaviour
                 }
                 objectName = "";
                 inFunnel[0] = "";
+                funnelRenderer.material.SetTexture("_MainTex", emptyFunnel);
                 funnelIndex = 0;
             }
 
@@ -360,6 +388,7 @@ public class PigController : MonoBehaviour
                 Debug.Log("So, you want to clear the funnel!?");
                 trashSound.Play();
                 FunnelImageItem1.texture = renderTextureBlank;
+                funnelRenderer.material.SetTexture("_MainTex", emptyFunnel);
                 inFunnel[0] = "";
                 funnelIndex = 0;
                 objectName = "";
