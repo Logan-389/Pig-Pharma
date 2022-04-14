@@ -97,7 +97,7 @@ public class FarmerScript : MonoBehaviour
         } else if(farmerStateIndex == 1)
         {
             /* Hiding behind hay bales*/
-            transform.position = new Vector3(-12.5f, -0.4f, 39.9f);
+            transform.position = new Vector3(-11.13f, -0.4f, 39.9f);
         }
         else if(farmerStateIndex == 2)
         {

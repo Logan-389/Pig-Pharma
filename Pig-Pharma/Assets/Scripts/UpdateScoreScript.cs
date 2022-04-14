@@ -28,11 +28,17 @@ public class UpdateScoreScript : MonoBehaviour
     {
         streakMultiplier++;
         print("streak muliplier " + streakMultiplier);
-        if (drugGiven == "Strained Mash D" || drugGiven == "Pink Syrup F")
+        if (drugGiven == "Strained Mash D" || drugGiven == "Pink Syrup F" || drugGiven == "Wormy Concotion")
         {
             score += (300*streakMultiplier);
             cash += 400;
-        } else
+        }
+        else if (drugGiven == "Blazing Brew")
+        {
+            score += (500 * streakMultiplier);
+            cash += 500;
+        }
+        else
         {
             score += (100*streakMultiplier);
             cash += 300;

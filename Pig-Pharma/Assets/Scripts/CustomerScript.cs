@@ -77,18 +77,18 @@ public class CustomerScript : MonoBehaviour
     {
         if(!orderTaken)
         {
-            rand = Random.Range(0, 5);
-            if (rand == 0)
+            rand = Random.Range(0, 10);
+            if (rand == 0 || rand == 7)
             {
                 requestA.SetText("I want a... \ngreen pill");
                 requestedDrug = "DrugBC";
             }
-            else if (rand == 1)
+            else if (rand == 1 || rand == 8)
             {
                 requestA.SetText("I want a... \npurple pill");
                 requestedDrug = "DrugAB";
             }
-            else if (rand == 2)
+            else if (rand == 2 || rand == 9)
             {
                 requestA.SetText("I want a... \norange pill");
                 requestedDrug = "DrugAC";
@@ -102,6 +102,16 @@ public class CustomerScript : MonoBehaviour
             {
                 requestA.SetText("I want a...\nPink Syrup F");
                 requestedDrug = "Pink Syrup F";
+            }
+            else if (rand == 5)
+            {
+                requestA.SetText("I want a...\nWormy Concotion");
+                requestedDrug = "Wormy Concotion";
+            }
+            else if (rand == 6)
+            {
+                requestA.SetText("I want a...\nBlazing Brew");
+                requestedDrug = "Blazing Brew";
             }
             else
             {
@@ -364,11 +374,18 @@ public class CustomerScript : MonoBehaviour
             else if (customerSatIndex == 1 && customerSatisfaction <= 0)
             {
                 customerSatIndex++;
-                if(requestedDrug == "Strained Mash D" || requestedDrug == "Pink Syrup F")
+                if(requestedDrug == "Strained Mash D" || requestedDrug == "Pink Syrup F" || requestedDrug == "Wormy Concotion")
                 {
                     Debug.Log("I REQUEST A LIQUID SO I SHALL WAIT");
                     customerSatisfaction = 25;
-                } else
+
+                }
+                else if(requestedDrug == "Blazing Brew")
+                {
+                    Debug.Log("I REQUEST THE BREW SO I SHALL WAIT");
+                    customerSatisfaction = 35;
+                }
+                else
                 {
                     customerSatisfaction = 10;
                 }
