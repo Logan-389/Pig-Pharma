@@ -17,17 +17,32 @@ public class UpdateScoreScript : MonoBehaviour
     public GameObject heartImg2;
     public GameObject heartImg3;
 
+    int streakMultiplier = 0;
+
     /* Get difficulty setting */
     GameDifficultyScript difficultyScript;
     bool hardMode = false;
+    float hardModeSafetyNet;
 
     public void updateScore(string drugGiven)
     {
-        score += 100;
-        cash += 300;
+        streakMultiplier++;
+        print("streak muliplier " + streakMultiplier);
+        if (drugGiven == "Strained Mash D" || drugGiven == "Pink Syrup F")
+        {
+            score += (300*streakMultiplier);
+            cash += 400;
+        } else
+        {
+            score += (100*streakMultiplier);
+            cash += 300;
+        }
         displayScore.text = score.ToString();
         displayCash.text = cash.ToString();
-        if (lives == 2 || lives == 1)       /* You did good, here's some extra lives */
+
+        difficultyScript = GameObject.FindGameObjectWithTag("Difficulty").GetComponent<GameDifficultyScript>();
+        hardMode = difficultyScript.returnDifficulty();
+        if (!hardMode && (lives == 2 || lives == 1))       /* You did good, here's some extra lives UNLESS YOU'RE IN HARD MODE LOL */
         {
             lives++;
             updateLivesImage();
@@ -36,6 +51,8 @@ public class UpdateScoreScript : MonoBehaviour
 
     public void updateLives()
     {
+        streakMultiplier = 0;
+        print("streak muliplier " + streakMultiplier);
         lives--;
         updateLivesImage();
         if (lives <= 0)
@@ -59,7 +76,14 @@ public class UpdateScoreScript : MonoBehaviour
         {
             updateLives();
         }
-        cash /= 2;
+
+        if(cash > 0)        
+        {
+            cash /= 2;
+        } else               /* You are already in the negatives!! You're done!! */
+        {
+            cash -= 600;
+        }
         displayCash.text = cash.ToString();
     }
 

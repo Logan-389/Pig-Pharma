@@ -45,7 +45,7 @@ public class BookScript : MonoBehaviour
                 BookPages.SetActive(true);
                 InventoryCanvas.SetActive(false);
                 bookIsOpen = true;
-            } else if(objectName == "Book" && bookIsOpen)
+            } else if(objectName == "Book" && bookIsOpen || objectName == "BookCloseButton")
             {
                 pageIndex = 0;
                 BookPages.SetActive(false);

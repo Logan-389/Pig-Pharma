@@ -59,9 +59,15 @@ public class CustomerScript : MonoBehaviour
     /* Audio */
     public AudioSource enterSound;
     public AudioSource bellSound;
+    public AudioSource AngrySighA;
+    public AudioSource AngrySighB;
+    public AudioSource AngrySighC;
+    public AudioSource AngryGruntA;
+    public AudioSource AngryGruntB;
+    public AudioSource AngryGruntC;
 
     /* Customer Wandering */
-    float timeUntilWandering = 3;
+    float timeUntilWandering = 10;
     float xPos;
     float zPos;
     float newXPos;
@@ -197,8 +203,40 @@ public class CustomerScript : MonoBehaviour
                 customerRenderer.material.SetTexture("_MainTex", cowText1);
             }
            }
+        
+        private void sighAngrily()
+        {
+            int randAudio = Random.Range(0, 3);
+            if(randAudio == 0)
+            {
+                AngrySighA.Play();
+            } else if(randAudio == 1)
+            {
+                AngrySighB.Play();
+            } else
+            {
+                AngrySighC.Play();
+            }  
+        }
 
-        private void getOurAnimalType2()
+        private void gruntAngrily()
+        {
+            int randAudio = Random.Range(0, 3);
+            if (randAudio == 0)
+            {
+                AngryGruntA.Play();
+            }
+            else if (randAudio == 1)
+            {
+                AngryGruntB.Play();
+            }
+            else
+            {
+                AngryGruntC.Play();
+            }
+        }
+
+    private void getOurAnimalType2()
         {
             if (indexOfAnimalType == 0)
             {
@@ -316,6 +354,7 @@ public class CustomerScript : MonoBehaviour
             {
                 customerSatIndex++;
                 customerSatisfaction = 10;
+                sighAngrily();
                 getOurAnimalType2();
             }
             else if (customerSatIndex == 1 && customerSatisfaction > 0)
@@ -327,11 +366,13 @@ public class CustomerScript : MonoBehaviour
                 customerSatIndex++;
                 if(requestedDrug == "Strained Mash D" || requestedDrug == "Pink Syrup F")
                 {
-                    customerSatisfaction = 20;
+                    Debug.Log("I REQUEST A LIQUID SO I SHALL WAIT");
+                    customerSatisfaction = 25;
                 } else
                 {
                     customerSatisfaction = 10;
                 }
+                gruntAngrily();
                 getOurAnimalType3();
             }
             else if (customerSatIndex == 2 && customerSatisfaction > 0)
@@ -353,7 +394,7 @@ public class CustomerScript : MonoBehaviour
                 xPos = Random.Range(-23, 23);
                 zPos = Random.Range(-42, -36);
                 transform.position = new Vector3(xPos, 1f, zPos);
-                timeUntilWandering = Random.Range(7, 15);
+                timeUntilWandering = Random.Range(15, 20);
             }
         }
     }
