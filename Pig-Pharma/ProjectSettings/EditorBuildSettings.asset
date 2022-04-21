@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BusinessFail.unity
     guid: 8a698c78da093c24091631fdaeeb74fd
+  - enabled: 1
+    path: Assets/Scenes/BusinessExplosion.unity
+    guid: 3d0f2599c2065e8478d1cca65e60b36e
   m_configObjects: {}

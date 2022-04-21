@@ -347,7 +347,7 @@ public class CustomerScript : MonoBehaviour
                 timeTilAtPharma -= Time.deltaTime; 
             } else                                                  // NOW GO TO THE PHARMA!
             {
-                xPos = Random.Range(-23, 16);
+                xPos = Random.Range(-13, 16);
                 zPos = Random.Range(-44, -35);
                 transform.position = new Vector3(xPos, 1f, zPos);
                 atPharma = true;
@@ -408,7 +408,7 @@ public class CustomerScript : MonoBehaviour
             timeUntilWandering -= Time.deltaTime;
             if (timeUntilWandering <= 0)
             {
-                xPos = Random.Range(-23, 16);
+                xPos = Random.Range(-13, 16);
                 zPos = Random.Range(-44, -35);
                 transform.position = new Vector3(xPos, 1f, zPos);
                 timeUntilWandering = Random.Range(15, 20);

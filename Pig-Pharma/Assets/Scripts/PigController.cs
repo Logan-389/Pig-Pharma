@@ -517,7 +517,7 @@ public class PigController : MonoBehaviour
             timeTilDeath -= Time.deltaTime;
         } else if (timeTilDeath < 0) /* RIP */
         {
-            SceneManager.LoadScene("BusinessFail");
+            SceneManager.LoadScene("BusinessExplosion");
         }
     }
 }
