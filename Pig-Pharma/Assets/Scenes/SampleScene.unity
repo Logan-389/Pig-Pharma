@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,133 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11483597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 11483598}
+  - component: {fileID: 11483599}
+  m_Layer: 6
+  m_Name: pigHurtNoise
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &11483598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11483597}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.4, y: 0, z: -12.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1365725867}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &11483599
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11483597}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 928b6a544658fee408b5a57f35e9fa9b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 35
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &18034209
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +756,8 @@ MonoBehaviour:
   BookPage5: {fileID: 2800000, guid: 5dbfe4e672ba79c4b9e0fb85cf43d934, type: 3}
   BookPage6: {fileID: 2800000, guid: 4dbe7561bba6e3545a4854c7ca3b5f33, type: 3}
   BookPage7: {fileID: 2800000, guid: 53a2cf53dd9d7184da64712ba6cbec0e, type: 3}
+  pageTurnNoise: {fileID: 679583152}
+  bookCloseNoise: {fileID: 102165718}
 --- !u!114 &60650258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,7 +1118,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1365725867}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &102165718
 AudioSource:
@@ -3068,6 +3197,7 @@ MonoBehaviour:
   heartImg1: {fileID: 1088342009}
   heartImg2: {fileID: 44841421}
   heartImg3: {fileID: 1773020164}
+  loseHeartNoise: {fileID: 11483599}
 --- !u!4 &468150014
 Transform:
   m_ObjectHideFlags: 0
@@ -3238,7 +3368,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1365725867}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &491543367
 AudioSource:
@@ -3250,7 +3380,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 097adbcf944f3cb49b8c6abdea10382b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5fc057b294860c8448cf3894d4683cfa, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4114,7 +4244,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1365725867}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &679583152
 AudioSource:
@@ -4475,11 +4605,13 @@ MonoBehaviour:
   MixerImageItem2: {fileID: 276230909}
   emptyMixer: {fileID: 2800000, guid: 27b361fab652bda40bf8311c8d446054, type: 3}
   fullMixer: {fileID: 2800000, guid: 4d55b28bc4ffb75469f857722c188954, type: 3}
+  mixerNoise: {fileID: 1323638251}
   Cauldron: {fileID: 256692442}
   CauldronImageItem1: {fileID: 971230435}
   CauldronImageItem2: {fileID: 1619659842}
   emptyCauldron: {fileID: 2800000, guid: f6633d581b396f24698e04ff9e3194f3, type: 3}
   fullCauldron: {fileID: 2800000, guid: fe2d31fc06ab77b499e48850fb3614fd, type: 3}
+  cauldronNoise: {fileID: 491543367}
   Funnel: {fileID: 574427100}
   FunnelImageItem1: {fileID: 1596067040}
   emptyFunnel: {fileID: 2800000, guid: 42e343f3eb1793740a5de910c9dbb3aa, type: 3}
@@ -4488,6 +4620,7 @@ MonoBehaviour:
   displayFunnelTimer: {fileID: 2143687812}
   funnelTimerSound: {fileID: 235659942}
   trashSound: {fileID: 1006279924}
+  funnelNoise: {fileID: 1118584987}
   Explosion: {fileID: 1227860870}
   GameBGM: {fileID: 486429355}
   InventoryCanvas: {fileID: 2003795976}
@@ -6245,7 +6378,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1365725867}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1118584987
 AudioSource:
@@ -6259,13 +6392,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f77280241930b824489d28d4d9b39b45, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 157
+  Priority: 171
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -8051,7 +8184,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1365725867}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1323638251
 AudioSource:
@@ -8254,6 +8387,7 @@ Transform:
   - {fileID: 414363362}
   - {fileID: 576155630}
   - {fileID: 1739481808}
+  - {fileID: 11483598}
   - {fileID: 1381651416}
   - {fileID: 491543366}
   - {fileID: 1323638250}
@@ -8364,7 +8498,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1365725867}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1381651417
 AudioSource:

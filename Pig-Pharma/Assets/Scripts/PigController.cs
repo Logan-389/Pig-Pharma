@@ -54,6 +54,7 @@ public class PigController : MonoBehaviour
     public Texture emptyMixer;
     public Texture fullMixer;
     Renderer mixerRenderer;
+    public AudioSource mixerNoise;
 
     /* Cauldron UI */
     public GameObject Cauldron;
@@ -64,6 +65,7 @@ public class PigController : MonoBehaviour
     public Texture emptyCauldron;
     public Texture fullCauldron;
     Renderer cauldronRenderer;
+    public AudioSource cauldronNoise;
 
     /* Funnel UI */
     public GameObject Funnel;
@@ -82,6 +84,7 @@ public class PigController : MonoBehaviour
 
     public AudioSource funnelTimerSound;
     public AudioSource trashSound;
+    public AudioSource funnelNoise;
 
     /* Explosion Stuff */
     public GameObject Explosion;
@@ -191,6 +194,7 @@ public class PigController : MonoBehaviour
             }
             else if (objectName == "Mixer" && mixIndex == 2) // THE MIXER IS FULL!! TIME TO MIX!!
             {
+                mixerNoise.Play();
                 if ((inMixer[0] == "IngredientA" && inMixer[1] == "IngredientB") || (inMixer[0] == "IngredientB" && inMixer[1] == "IngredientA"))
                 {
                     MixerImageItem1.texture = renderTextureItemMixAB;
@@ -317,6 +321,7 @@ public class PigController : MonoBehaviour
             }
             else if (objectName == "Cauldron" && cauldIndex == 1) //cook what is in the cauldron
             {
+                cauldronNoise.Play();
                 if (inCauldron[0] == "IngredientMixAB")
                 {
                     CauldronImageItem1.texture = renderTextureDrugAB;
@@ -409,6 +414,7 @@ public class PigController : MonoBehaviour
                 objectName = "";
             } else if (objectName == "Funnel" && funnelIndex == 1)
             {
+                funnelNoise.Play();
                 if(inFunnel[0] == "IngredientD")
                 {
                     funnelTimer = 15;
@@ -463,6 +469,7 @@ public class PigController : MonoBehaviour
             if (objectName == "Funnel_Clear")
             {
                 Debug.Log("So, you want to clear the funnel!?");
+                funnelNoise.Stop();
                 trashSound.Play();
                 FunnelImageItem1.texture = renderTextureBlank;
                 funnelRenderer.material.SetTexture("_MainTex", emptyFunnel);

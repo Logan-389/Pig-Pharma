@@ -16,6 +16,7 @@ public class UpdateScoreScript : MonoBehaviour
     public GameObject heartImg1;
     public GameObject heartImg2;
     public GameObject heartImg3;
+    public AudioSource loseHeartNoise;
 
     int streakMultiplier = 0;
 
@@ -59,6 +60,7 @@ public class UpdateScoreScript : MonoBehaviour
     {
         streakMultiplier = 0;
         print("streak muliplier " + streakMultiplier);
+        loseHeartNoise.Play();
         lives--;
         updateLivesImage();
         if (lives <= 0)

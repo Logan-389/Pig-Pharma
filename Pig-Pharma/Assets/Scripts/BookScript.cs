@@ -26,6 +26,9 @@ public class BookScript : MonoBehaviour
     public Texture BookPage6;
     public Texture BookPage7;
 
+    public AudioSource pageTurnNoise;
+    public AudioSource bookCloseNoise;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,11 +47,13 @@ public class BookScript : MonoBehaviour
             Debug.Log(objectName);
             if (objectName == "Book" && !bookIsOpen)
             {
+                bookCloseNoise.Play();
                 BookPages.SetActive(true);
                 InventoryCanvas.SetActive(false);
                 bookIsOpen = true;
             } else if(objectName == "Book" && bookIsOpen || objectName == "BookCloseButton")
             {
+                bookCloseNoise.Play();
                 pageIndex = 0;
                 BookPages.SetActive(false);
                 InventoryCanvas.SetActive(true);
@@ -56,9 +61,11 @@ public class BookScript : MonoBehaviour
             } else if(objectName == "ToLeftButton" && pageIndex != 0)
             {
                 pageIndex--;
+                pageTurnNoise.Play();
             } else if(objectName == "ToRightButton" && pageIndex != totalPages)
             {
                 pageIndex++;
+                pageTurnNoise.Play();
             }
 
             if(pageIndex == 0)
