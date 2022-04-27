@@ -348,7 +348,7 @@ public class CustomerScript : MonoBehaviour
             } else                                                  // NOW GO TO THE PHARMA!
             {
                 xPos = Random.Range(-13, 16);
-                zPos = Random.Range(-44, -35);
+                zPos = Random.Range(-43, -35);
                 transform.position = new Vector3(xPos, 1f, zPos);
                 atPharma = true;
                 enterSound.Play();
@@ -409,7 +409,7 @@ public class CustomerScript : MonoBehaviour
             if (timeUntilWandering <= 0)
             {
                 xPos = Random.Range(-13, 16);
-                zPos = Random.Range(-44, -35);
+                zPos = Random.Range(-43, -35);
                 transform.position = new Vector3(xPos, 1f, zPos);
                 timeUntilWandering = Random.Range(15, 20);
             }

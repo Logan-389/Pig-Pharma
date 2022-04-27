@@ -47,14 +47,15 @@ public class BookScript : MonoBehaviour
             Debug.Log(objectName);
             if (objectName == "Book" && !bookIsOpen)
             {
+                Time.timeScale = 0f;
                 bookCloseNoise.Play();
                 BookPages.SetActive(true);
                 InventoryCanvas.SetActive(false);
                 bookIsOpen = true;
             } else if(objectName == "Book" && bookIsOpen || objectName == "BookCloseButton")
             {
+                Time.timeScale = 1f;
                 bookCloseNoise.Play();
-                pageIndex = 0;
                 BookPages.SetActive(false);
                 InventoryCanvas.SetActive(true);
                 bookIsOpen = false;

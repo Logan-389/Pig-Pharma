@@ -52,7 +52,15 @@ public class PigController : MonoBehaviour
     public RawImage MixerImageItem2;
     string[] inMixer = new string[2];
     public Texture emptyMixer;
-    public Texture fullMixer;
+    public Texture fullMixerA;
+    public Texture fullMixerB;
+    public Texture fullMixerC;
+    public Texture fullMixerD;
+    public Texture fullMixerF;
+    public Texture fullMixerAB;
+    public Texture fullMixerAC;
+    public Texture fullMixerBC;
+    public Texture fullMixerDF;
     Renderer mixerRenderer;
     public AudioSource mixerNoise;
 
@@ -63,7 +71,11 @@ public class PigController : MonoBehaviour
     public RawImage CauldronImageItem2;
     string[] inCauldron = new string[2];
     public Texture emptyCauldron;
-    public Texture fullCauldron;
+    public Texture fullCauldronAA;
+    public Texture fullCauldronAB;
+    public Texture fullCauldronAC;
+    public Texture fullCauldronBC;
+    public Texture fullCauldronDF;
     Renderer cauldronRenderer;
     public AudioSource cauldronNoise;
 
@@ -73,7 +85,10 @@ public class PigController : MonoBehaviour
     public RawImage FunnelImageItem1;
     string[] inFunnel = new string[1];
     public Texture emptyFunnel;
-    public Texture fullFunnel;
+    public Texture fullFunnelD;
+    public Texture fullFunnelF;
+    public Texture fullFunnelDF;
+    public Texture fullFunnelAA;
     Renderer funnelRenderer;
 
     public float funnelTimer = 0;
@@ -141,24 +156,29 @@ public class PigController : MonoBehaviour
                 if (heldIngredient == "IngredientA")
                 {
                     MixerImageItem1.texture = renderTextureItemIngA;
+                    mixerRenderer.material.SetTexture("_MainTex", fullMixerA);
                 }
                 else if (heldIngredient == "IngredientB")
                 {
                     MixerImageItem1.texture = renderTextureItemIngB;
+                    mixerRenderer.material.SetTexture("_MainTex", fullMixerB);
                 }
                 else if (heldIngredient == "IngredientC")
                 {
                     MixerImageItem1.texture = renderTextureItemIngC;
+                    mixerRenderer.material.SetTexture("_MainTex", fullMixerC);
                 } 
                 else if (heldIngredient == "IngredientD")
                 {
                     MixerImageItem1.texture = renderTextureItemIngD;
+                    mixerRenderer.material.SetTexture("_MainTex", fullMixerD);
                 } 
                 else if (heldIngredient == "IngredientF")
                 {
                     MixerImageItem1.texture = renderTextureItemIngF;
+                    mixerRenderer.material.SetTexture("_MainTex", fullMixerF);
                 }
-                mixerRenderer.material.SetTexture("_MainTex", fullMixer);
+                //mixerRenderer.material.SetTexture("_MainTex", fullMixer);
                 mixIndex++;
                 heldIngredient = "none";
                 objectName = "";
@@ -199,21 +219,25 @@ public class PigController : MonoBehaviour
                 {
                     MixerImageItem1.texture = renderTextureItemMixAB;
                     MixerImageItem2.texture = renderTextureBlank;
+                    mixerRenderer.material.SetTexture("_MainTex", fullMixerAB);
                 }
                 else if ((inMixer[0] == "IngredientB" && inMixer[1] == "IngredientC") || (inMixer[0] == "IngredientC" && inMixer[1] == "IngredientB"))
                 {
                     MixerImageItem1.texture = renderTextureItemMixBC;
                     MixerImageItem2.texture = renderTextureBlank;
+                    mixerRenderer.material.SetTexture("_MainTex", fullMixerBC);
                 }
                 else if ((inMixer[0] == "IngredientA" && inMixer[1] == "IngredientC") || (inMixer[0] == "IngredientC" && inMixer[1] == "IngredientA"))
                 {
                     MixerImageItem1.texture = renderTextureItemMixAC;
                     MixerImageItem2.texture = renderTextureBlank;
+                    mixerRenderer.material.SetTexture("_MainTex", fullMixerAC);
                 }
                 else if ((inMixer[0] == "IngredientD" && inMixer[1] == "IngredientF") || (inMixer[0] == "IngredientF" && inMixer[1] == "IngredientD"))
                 {
                     MixerImageItem1.texture = renderTextureItemMixDF;
                     MixerImageItem2.texture = renderTextureBlank;
+                    mixerRenderer.material.SetTexture("_MainTex", fullMixerDF);
                 }
                 else if ((inMixer[0] == "IngredientA" && inMixer[1] == "IngredientA") || (inMixer[0] == "IngredientA" && inMixer[1] == "IngredientA"))
                 {
@@ -299,21 +323,25 @@ public class PigController : MonoBehaviour
                 if (heldIngredient == "IngredientMixAB")
                 {
                     CauldronImageItem1.texture = renderTextureItemMixAB;
+                    cauldronRenderer.material.SetTexture("_MainTex", fullCauldronAB);
                 }
                 else if (heldIngredient == "IngredientMixBC")
                 {
                     CauldronImageItem1.texture = renderTextureItemMixBC;
+                    cauldronRenderer.material.SetTexture("_MainTex", fullCauldronBC);
                 }
                 else if (heldIngredient == "IngredientMixAC")
                 {
                     CauldronImageItem1.texture = renderTextureItemMixAC;
+                    cauldronRenderer.material.SetTexture("_MainTex", fullCauldronAC);
                 }
                 else if (heldIngredient == "IngredientMixAA")
                 {
                     CauldronImageItem1.texture = renderTextureItemMixAA;
+                    cauldronRenderer.material.SetTexture("_MainTex", fullCauldronAA);
                 }
 
-                cauldronRenderer.material.SetTexture("_MainTex", fullCauldron);
+                //cauldronRenderer.material.SetTexture("_MainTex", fullCauldron);
                 cauldIndex++;
                 ImageItem.texture = renderTextureBlank;
                 heldIngredient = "";
@@ -394,22 +422,26 @@ public class PigController : MonoBehaviour
                 if (heldIngredient == "IngredientD")
                 {
                     FunnelImageItem1.texture = renderTextureItemIngD;
+                    funnelRenderer.material.SetTexture("_MainTex", fullFunnelD);
                 } 
                 else if (heldIngredient == "IngredientF")
                 {
                     FunnelImageItem1.texture = renderTextureItemIngF;
+                    funnelRenderer.material.SetTexture("_MainTex", fullFunnelF);
                 } 
                 else if (heldIngredient == "IngredientMixDF")
                 {
                     FunnelImageItem1.texture = renderTextureItemMixDF;
+                    funnelRenderer.material.SetTexture("_MainTex", fullFunnelDF);
                 }
                 else if (heldIngredient == "IngredientMixAA")
                 {
                     FunnelImageItem1.texture = renderTextureItemMixAA;
+                    funnelRenderer.material.SetTexture("_MainTex", fullFunnelAA);
                 }
                 funnelIndex++;
                 ImageItem.texture = renderTextureBlank;
-                funnelRenderer.material.SetTexture("_MainTex", fullFunnel);
+                //funnelRenderer.material.SetTexture("_MainTex", fullFunnel);
                 heldIngredient = "";
                 objectName = "";
             } else if (objectName == "Funnel" && funnelIndex == 1)
@@ -491,7 +523,7 @@ public class PigController : MonoBehaviour
             }
 
             /* if the customer is clicked on */
-            if (objectName == "CustomerA" || objectName == "CustomerB")
+            if (objectName == "CustomerA" || objectName == "CustomerB" || objectName == "CustomerC" || objectName == "CustomerD")
             {
                 heldIngredient = "";
                 objectName = "";
